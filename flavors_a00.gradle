@@ -10,7 +10,7 @@ configurations {
   flavors_a00DebugImplementation
 }
 
-void applyFlavorsA00(String dim) {
+String applyFlavorsA00(String dim) {
   //版本信息
   def appName = "原始版"
   def appId = "com.cc.config00"
@@ -45,4 +45,5 @@ void applyFlavorsA00(String dim) {
       }
     }
   }
+  return "flavors_a00,${appName}"
 }

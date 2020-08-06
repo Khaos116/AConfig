@@ -6,6 +6,9 @@ apply from: "${getProjectDir().getParentFile().getPath() + "/flavors_a00.gradle"
 apply from: "${getProjectDir().getParentFile().getPath() + "/flavors_a01.gradle"}"
 apply from: "${getProjectDir().getParentFile().getPath() + "/flavors_a02.gradle"}"
 
+//方便修改打包后的名称
+def apkNamesList = new ArrayList<String>()
+
 //android配置
 android {
   compileSdkVersion 29
@@ -52,9 +55,9 @@ android {
   flavorDimensions "default"
   //代码差分化打包
   productFlavors {
-    applyFlavorsA00("default")
-    applyFlavorsA01("default")
-    applyFlavorsA02("default")
+    apkNamesList.add(applyFlavorsA00("default"))
+    apkNamesList.add(applyFlavorsA01("default"))
+    apkNamesList.add(applyFlavorsA02("default"))
   }
 }
 
@@ -77,21 +80,34 @@ android.applicationVariants.all { variant ->
     String typeName = buildType.name
     typeName = typeName.substring(0, 1).toUpperCase() + typeName.substring(1).toLowerCase()
     //版本号
-    String versionName = "_V${getVersionName()}"
-    //后缀名
-    String suffix = ".apk"
+    String versionName = getVersionName()
+    //渠道名称
+    String flavorsName = variant.productFlavors[0].name
+    //应用名称
+    String apkName = ""
+    apkNamesList.find { name ->
+      if (name.trim().startsWith(flavorsName) && name.contains(",")) {
+        apkName = name.split(",")[1]
+        return true
+      }
+    }
+    //打包完成后的重命名和拷贝
     assemble.doLast {
       //创建APK目录(APK+渠道名称)
-      File apkFile = new File("../APK/${variant.productFlavors[0].name}/${typeName}")
+      File apkFile = new File("../APK/${flavorsName}/${typeName}")
       if (!apkFile.exists()) apkFile.mkdirs()
       //编译完成的时间
-      String buildEndTime = "_${new Date().format("yyyyMMddHHmm")}"
-      String fileName = "${typeName}${versionName}${buildEndTime}${suffix}"
+      String buildEndTime = "${new Date().format("yyyyMMddHHmm")}"
+      String fileName = "${apkName}${typeName}_${versionName}_${buildEndTime}.apk"
       //把正式版拷贝到项目APK目录
-      project.copy {
-        from("${output.outputFile}")
-        into("${apkFile.path}")
-        rename("${output.outputFile.name}", "${fileName}")
+      if (typeName == "Release") {
+        project.copy {
+          from("${output.outputFile}")
+          into("${apkFile.path}")
+          rename("${output.outputFile.name}", "${fileName}")
+        }
+      } else {
+        outputFileName = fileName
       }
     }
   }

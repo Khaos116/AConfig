@@ -5,7 +5,7 @@ ext.applyFlavorsA02 = { dim ->
   this.&applyFlavorsA02(dim)
 }
 
-void applyFlavorsA02(String dim) {
+String applyFlavorsA02(String dim) {
   //版本信息
   def appName = "渠道A02"
   def appId = "com.cc.config02"
@@ -39,4 +39,5 @@ void applyFlavorsA02(String dim) {
       }
     }
   }
+  return "flavors_a02,${appName}"
 }

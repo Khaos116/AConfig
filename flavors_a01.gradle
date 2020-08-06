@@ -1,3 +1,5 @@
+import jdk.internal.util.xml.impl.Pair
+
 apply plugin: 'com.android.application'
 
 //导出函数
@@ -5,7 +7,7 @@ ext.applyFlavorsA01 = { dim ->
   this.&applyFlavorsA01(dim)
 }
 
-void applyFlavorsA01(String dim) {
+String applyFlavorsA01(String dim) {
   //版本信息
   def appName = "渠道A01"
   def appId = "com.cc.config01"
@@ -40,4 +42,5 @@ void applyFlavorsA01(String dim) {
       }
     }
   }
+  return "flavors_a01,${appName}"
 }
