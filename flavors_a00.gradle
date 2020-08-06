@@ -5,6 +5,11 @@ ext.applyFlavorsA00 = { dim ->
   this.&applyFlavorsA00(dim)
 }
 
+//解决渠道下DebugImplementation和ReleaseImplementation编译通不过的问题  https://stackoverflow.com/questions/24860659/multi-flavor-app-based-on-multi-flavor-library-in-android-gradle
+configurations {
+  flavors_a00DebugImplementation
+}
+
 void applyFlavorsA00(String dim) {
   //版本信息
   def appName = "原始版"
@@ -34,8 +39,8 @@ void applyFlavorsA00(String dim) {
         resValue "string", "app_name", appName
         //A00配置
         dependencies {
-          //flavors_a00Implementation 'com.squareup.leakcanary:leakcanary-android:2.4'
-          flavors_a00Implementation  fileTree(dir: "src/flavors_a00/libs", include: ["*.jar", '*.aar'])
+          flavors_a00DebugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+          flavors_a00Implementation fileTree(dir: "src/flavors_a00/libs", include: ["*.jar", '*.aar'])
         }
       }
     }
