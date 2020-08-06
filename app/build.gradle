@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+//公共函数的多渠道配置
+apply from: "${getProjectDir().getParentFile().getPath() + "/flavors_a00.gradle"}"
+apply from: "${getProjectDir().getParentFile().getPath() + "/flavors_a01.gradle"}"
+apply from: "${getProjectDir().getParentFile().getPath() + "/flavors_a02.gradle"}"
+
+android {
+  compileSdkVersion 29
+
+  //基础配置
+  defaultConfig {
+    applicationId "com.cc.config"
+    minSdkVersion 23
+    targetSdkVersion 29
+    versionCode 1
+    versionName "1.0"
+    resValue "string", "build_time", new Date().format("yyyy_MM_dd HH:mm")
+    multiDexEnabled true
+    resConfigs "zh", "en" //保留中文和英文资源
+    ndk { abiFilters 'armeabi-v7a' } //,'arm64-v8a'
+  }
+
+  //编译类型
+  buildTypes {
+    debug {
+      debuggable true
+      zipAlignEnabled false
+      shrinkResources false
+      minifyEnabled false
+      //指定 debug 使用release的签名
+      signingConfig release.signingConfig
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+    release {
+      debuggable false
+      zipAlignEnabled true
+      shrinkResources true
+      minifyEnabled true
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  //lambda表达式需要
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  //多维度 https://blog.csdn.net/chen_xi_hao/article/details/80526049
+  flavorDimensions "default"
+  //代码差分化打包
+  productFlavors {
+    applyFlavorsA00("default")
+    applyFlavorsA01("default")
+    applyFlavorsA02("default")
+    ss{}
+  }
+}
+
+dependencies {
+  //为了保证代码能正常编译，使用compileOnly，真正的libs到渠道配置里面去配置
+  compileOnly fileTree(dir: "libs", include: ["*.jar", '*.aar'])
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation 'androidx.core:core-ktx:1.3.1'
+  implementation 'androidx.appcompat:appcompat:1.1.0'
+  implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+  //https://github.com/Blankj/AndroidUtilCode/blob/master/lib/utilcode/README-CN.md
+  implementation 'com.blankj:utilcodex:1.29.0'
+}

@@ -1,0 +1,18 @@
+查看签名：
+keytool -exportcert -list -v -keystore xxx.jsk
+
+A00-SHA1：
+DA:A2:B5:87:06:7D:C1:4E:83:4E:9A:DB:14:BC:BE:5B:12:7D:8D:F2
+
+A01-SHA1：
+8E:10:AA:40:8F:43:B3:23:2C:77:3F:95:C9:FF:65:5F:0C:18:AB:43
+
+A02-SHA1：
+0C:F4:60:53:63:BB:F7:0D:31:19:48:37:03:CE:0B:93:8E:75:BC:41
+
+注意事项：
+1.根目录下flavors_axx.gradle 是各个渠道的配置信息
+2.app/src/flavors_axx 是各个渠道的资源存放(libs、assets、res、raw等)
+3.app的gradle文件需要引用公共函数：apply from: "${getProjectDir().getParentFile().getPath() + "/flavors_axx.gradle"}"
+4.需要将app的gradle文件buildTypes下debug签名改为release签名(否则打包会走AS的默认签名)
+5.在app的gradle文件productFlavors下添加各个渠道的公共函数调用

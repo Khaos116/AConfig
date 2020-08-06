@@ -1,0 +1,6 @@
+A00注意事项：
+1.flavors_axx.gradle 是各个渠道的配置信息
+2.app/src/flavors_axx 是各个渠道的资源存放
+3.app的gradle文件需要引用公共函数：apply from: "${getProjectDir().getParentFile().getPath() + "/flavors_axx.gradle"}"
+4.需要将app的gradle文件buildTypes下debug签名改为release签名(否则打包会走AS的默认签名)
+5.在app的gradle文件productFlavors下添加各个渠道的公共函数调用

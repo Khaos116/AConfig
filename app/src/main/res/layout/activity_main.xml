@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    >
+
+  <TextView
+      android:id="@+id/mainTvAppInfo"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="10dp"
+      android:text="APP版本信息"
+      />
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:layout_marginTop="2dp"
+      android:layout_marginBottom="2dp"
+      android:background="@color/colorAccent"
+      />
+
+  <ImageView
+      android:id="@+id/mainIv"
+      android:layout_width="72dp"
+      android:layout_height="72dp"
+      android:contentDescription="@null"
+      android:src="@mipmap/ic_launcher"
+      />
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:layout_marginTop="2dp"
+      android:layout_marginBottom="2dp"
+      android:background="@color/colorAccent"
+      />
+
+  <TextView
+      android:id="@+id/mainTvLibsInfo"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="10dp"
+      android:text="Libs信息"
+      />
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="1dp"
+      android:layout_marginTop="2dp"
+      android:layout_marginBottom="2dp"
+      android:background="@color/colorAccent"
+      />
+
+  <TextView
+      android:id="@+id/mainTvAssetsInfo"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:padding="10dp"
+      android:text="Assets信息"
+      />
+</LinearLayout>

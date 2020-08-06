@@ -1,0 +1,3 @@
+include ':ConfigLib'
+include ':app'
+rootProject.name = "AConfig"

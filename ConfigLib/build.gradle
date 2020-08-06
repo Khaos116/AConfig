@@ -1,0 +1,27 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android { compileSdkVersion 29 }
+
+dependencies {
+  implementation fileTree(dir: "libs", include: ["*.jar"])
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+//https://www.jianshu.com/p/1a69e2fcaed5
+task makeJar(type: Copy) {
+  //删除存在的
+  delete 'build/libs/config.jar'
+  //设置拷贝的文件
+  from('build/intermediates/bundles/release/')
+  //打进jar包后的文件目录
+  into('build/libs/')
+  //将classes.jar放入build/libs/目录下
+  //include ,exclude参数来设置过滤
+  //（我们只关心classes.jar这个文件）
+  include('classes.jar')
+  //重命名
+  rename('classes.jar', 'config.jar')
+}
+
+makeJar.dependsOn(build)

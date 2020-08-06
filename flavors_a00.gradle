@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+//导出函数
+ext.applyFlavorsA00 = { dim ->
+  this.&applyFlavorsA00(dim)
+}
+
+void applyFlavorsA00(String dim) {
+  //版本信息
+  def appName = "原始版"
+  def appId = "com.cc.config00"
+  def version_Name = "1.0.0"
+  def version_Build = 0
+  def version_Code = (version_Name.replace(".", "")).toInteger() * 1000 + version_Build
+  //配置代码差异化配置
+  android {
+    //签名配置
+    signingConfigs {
+      flavors_a00 {
+        storeFile file('../jks/a00.jks')
+        storePassword '123a00'
+        keyAlias 'a00'
+        keyPassword '123a00'
+      }
+    }
+    //渠道配置
+    productFlavors {
+      flavors_a00 {
+        dimension dim
+        applicationId appId
+        versionCode version_Code
+        versionName version_Name
+        signingConfig signingConfigs.flavors_a00
+        resValue "string", "app_name", appName
+        //A00配置
+        dependencies {
+          //flavors_a00Implementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+          flavors_a00Implementation  fileTree(dir: "src/flavors_a00/libs", include: ["*.jar", '*.aar'])
+        }
+      }
+    }
+  }
+}
