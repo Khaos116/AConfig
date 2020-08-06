@@ -16,7 +16,8 @@ A02-SHA1：
 3.app的gradle文件需要引用公共函数：apply from: "${getProjectDir().getParentFile().getPath() + "/flavors_axx.gradle"}"
 4.需要将app的gradle文件buildTypes下debug签名改为release签名(否则打包会走AS的默认签名)
 5.在app的gradle文件productFlavors下添加各个渠道的公共函数调用
-6.打包：https://blog.csdn.net/chengkaizone/article/details/51365020
+6.如果需要打debug版本的包，需要将根目录下gradle.properties文件中的needCreateDebug改为true
+7.打包：https://blog.csdn.net/chengkaizone/article/details/51365020
 全部包:      gradlew build
 Debug包：    gradlew assembleDebug
 Release包：  gradlew assembleRelease
