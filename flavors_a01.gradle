@@ -41,6 +41,8 @@ String applyFlavorsA01(String dim) {
         }
       }
     }
+    //配置so目录
+    sourceSets { flavors_a01 { jniLibs.srcDirs = ['src/flavors_a01/jniLibs'] } }
   }
   return "flavors_a01,${appName}"
 }
