@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.ResourceUtils
 import com.blankj.utilcode.util.Utils
 import com.cc.config.utils.AppInfoUtils
-import com.cc.configlib.ConfigLibUtils
+import com.cc.configjarlib.ConfigJarUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.activity_main)
     Utils.init(application)
     mainTvAppInfo.text = AppInfoUtils.instance.getAppInfo()
-    mainTvLibsInfo.text = "jar内读取:\n\n${ConfigLibUtils.instance.getPackageName(this)}"
+    mainTvLibsInfo.text = "jar内读取:\n\n${ConfigJarUtils.getStrFromJAR()}"
     mainTvAssetsInfo.text = "assets内容读取:\n\n${ResourceUtils.readAssets2String("read.txt")}"
   }
 }
