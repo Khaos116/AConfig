@@ -22,3 +22,4 @@ A02-SHA1：
 Debug包：    gradlew assembleDebug
 Release包：  gradlew assembleRelease
 单独渠道打包：gradlew assembleflavors_a00Release
+8.ConfigSoLib是使用c编写生成的so;ConfigSoLib2是使用c++编写生成的so,c生成的大概20+kb,c++生成的大概800+kb。差距有点大啊
