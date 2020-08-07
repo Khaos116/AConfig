@@ -100,7 +100,7 @@ android.applicationVariants.all { variant ->
       String buildEndTime = "${new Date().format("yyyyMMddHHmm")}"
       String fileName = "${apkName}${typeName}_${versionName}_${buildEndTime}.apk"
       //把正式版拷贝到项目APK目录
-      if (typeName == "Release" || rootProject.ext.needCreateDebug == true) {
+      if (typeName == "Release" || rootProject.ext.needCreateDebug == "true") {
         project.copy {
           from("${output.outputFile}")
           into("${apkFile.path}")
