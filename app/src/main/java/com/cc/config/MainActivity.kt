@@ -20,5 +20,6 @@ class MainActivity : AppCompatActivity() {
     mainTvJarInfo.text = "jar信息读取:\n\n${ConfigJarUtils.getStrFromJAR()}"
     mainTvSoInfo.text = "so信息读取:\n\n${ConfigSoUtils.stringFromSo()}"
     mainTvAssetsInfo.text = "assets信息读取:\n\n${ResourceUtils.readAssets2String("read.txt")}"
+    MurMur3.test()
   }
 }
