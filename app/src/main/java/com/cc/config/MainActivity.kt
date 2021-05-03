@@ -3,6 +3,7 @@ package com.cc.config
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import at.orz.hash.MurMur3Utils
 import com.blankj.utilcode.util.ResourceUtils
 import com.blankj.utilcode.util.Utils
 import com.cc.config.utils.AppInfoUtils
@@ -20,6 +21,6 @@ class MainActivity : AppCompatActivity() {
     mainTvJarInfo.text = "jar信息读取:\n\n${ConfigJarUtils.getStrFromJAR()}"
     mainTvSoInfo.text = "so信息读取:\n\n${ConfigSoUtils.stringFromSo()}"
     mainTvAssetsInfo.text = "assets信息读取:\n\n${ResourceUtils.readAssets2String("read.txt")}"
-    MurMur3.test()
+    MurMur3Utils.simpleTest()
   }
 }

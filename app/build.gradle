@@ -72,7 +72,6 @@ dependencies {
   implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
   //https://github.com/Blankj/AndroidUtilCode/blob/master/lib/utilcode/README-CN.md
   implementation 'com.blankj:utilcodex:1.30.6'
-  implementation 'com.google.guava:guava:30.1.1-android'
 }
 
 //打包处理
