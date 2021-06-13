@@ -5,7 +5,7 @@ import java.math.BigInteger;
 
 /**
  * @Description MurMur3 加密工具 https://github.com/tamtam180/MurmurHash-For-Java
- * @Author：CASE
+ * @Author：Khaos
  * @Date：2021-05-03
  * @Time：14:17
  */
