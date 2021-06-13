@@ -3,7 +3,7 @@ package com.cc.configjarlib;
 /**
  * Description:
  *
- * @author: CASE
+ * @author: Khaos
  * @date: 2020/8/7 10:47
  */
 public class ConfigJarUtils {
