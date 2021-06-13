@@ -3,7 +3,7 @@ package com.cc.configsolib2;
 /**
  * Description:
  *
- * @author: CASE
+ * @author: Khaos
  * @date: 2020/8/7 11:16
  */
 public class ConfigSoUtils {
